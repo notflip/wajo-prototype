@@ -1,15 +1,12 @@
+import { Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button.tsx";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
 import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-
-import { Clock, MapPin } from "lucide-react";
 
 const SearchResults = ({ searchResults }: { searchResults: Array<any> }) => {
     return (

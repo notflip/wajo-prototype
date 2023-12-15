@@ -14,15 +14,33 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
+import { Options } from "@/App.tsx";
 
-interface Options {
-    label: string
-    value: string
-}
-
-export default function Search({ options }: { options: Array<Options> }) {
+export default function Search({ searchQuery, options, onSelectSearchItem }: {
+    searchQuery: string,
+    options: Array<Array<Options>>,
+    onSelectSearchItem: any
+}) {
     const [open, setOpen] = React.useState(false)
-    const [value, setValue] = React.useState("")
+
+    function onSelect(searchQuery: string) {
+        setOpen(false)
+        onSelectSearchItem(searchQuery)
+    }
+
+    // Flatten the array of arrays and extract the "value" and "label" properties
+    const allValuesWithLabels = options.flatMap(innerArray =>
+        innerArray.map(obj => ({ value: obj.value, label: obj.label }))
+    );
+
+    // Use a Set to keep only unique values based on the "value" property
+    const uniqueValuesWithLabelsSet = new Set(allValuesWithLabels.map(obj => obj.value));
+
+    // Convert the Set back to an array and map it to the corresponding labels
+    const uniqueValuesWithLabels = [...uniqueValuesWithLabelsSet].map(value => {
+        const matchingObject = allValuesWithLabels.find(obj => obj.value === value);
+        return { value, label: matchingObject!.label };
+    });
 
     return (
         <Popover open={ open } onOpenChange={ setOpen }>
@@ -33,8 +51,11 @@ export default function Search({ options }: { options: Array<Options> }) {
                     aria-expanded={ open }
                     className="w-[200px] justify-between"
                 >
-                    { value
-                        ? options.find((option: { label: string, value: string }) => option.value === value)?.label
+                    { searchQuery
+                        ? uniqueValuesWithLabels.find((option: {
+                            label: string,
+                            value: string
+                        }) => option.value === searchQuery)?.label
                         : "Selecteer je klacht..." }
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
                 </Button>
@@ -44,19 +65,16 @@ export default function Search({ options }: { options: Array<Options> }) {
                     <CommandInput placeholder="Selecteer je klacht..."/>
                     <CommandEmpty>No framework found.</CommandEmpty>
                     <CommandGroup>
-                        { options.map((option: { label: string, value: string }) => (
+                        { uniqueValuesWithLabels.map((option: { label: string, value: string }) => (
                             <CommandItem
                                 key={ option.value }
                                 value={ option.value }
-                                onSelect={ (currentValue) => {
-                                    setValue(currentValue === value ? "" : currentValue)
-                                    setOpen(false)
-                                } }
+                                onSelect={ onSelect }
                             >
                                 <Check
                                     className={ cn(
                                         "mr-2 h-4 w-4",
-                                        value === option.value ? "opacity-100" : "opacity-0"
+                                        searchQuery === option.value ? "opacity-100" : "opacity-0"
                                     ) }
                                 />
                                 { option.label }
