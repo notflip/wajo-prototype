@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Check, ChevronsUpDown, MapPin, Stethoscope } from "lucide-react"
+import { Check, ChevronsUpDown, MapPin } from "lucide-react"
 
 
 import * as React from "react";
@@ -58,25 +58,12 @@ function SelectPopover({ options }: { options: Array<{ label: string, value: str
     )
 }
 
-export default function Filter({ doctors, locations }: {
+export default function Filter({ locations }: {
     doctors: Array<Doctor>,
     locations: Array<{ label: string, value: string }>
 }) {
     return (
         <div className="flex gap-1">
-            <Button variant="outline">
-                <Stethoscope className="mr-2 h-4 w-4"/>
-                Toon Alle
-                <span style={ { fontWeight: "bold" } }> &nbsp;Knie&nbsp;</span>
-                Specialisten
-            </Button>
-            { doctors.length > 0
-                && doctors.map((doctor) => (
-                    <Button variant="outline" key={ doctor.name }>
-                        <Stethoscope className="mr-2 h-4 w-4"/>
-                        { doctor.name }
-                    </Button>
-                )) }
             <SelectPopover options={ locations }/>
         </div>
     );

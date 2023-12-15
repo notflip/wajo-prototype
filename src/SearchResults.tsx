@@ -17,16 +17,16 @@ const SearchResults = ({ searchResults }: { searchResults: Array<any> }) => {
             { searchResults.map((doctor: any) => (
                 <Card key={ doctor.name }>
                     <CardHeader>
-                        <CardTitle>
+                        <CardTitle className="text-lg">
                             <div className="flex items-center gap-3">
                                 <Avatar className="h-8 w-8">
-                                    <AvatarImage className="object-cover" src="/img/dr-dobbelaere.jpg"/>
+                                    <AvatarImage className="object-cover" src={ `img/${ doctor.image }` }/>
                                     <AvatarFallback>{ doctor.name[0] }</AvatarFallback>
                                 </Avatar>
                                 <div>
                                     { doctor.name }
-                                    <div className="mt-0.5 text-sm font-normal tracking-normal text-muted-foreground">
-                                        Hand-, pols- en elleboogchirurgie, Microchirurgie
+                                    <div className="-mt-0.5 text-sm font-normal tracking-normal text-muted-foreground">
+                                        { doctor.description }
                                     </div>
                                 </div>
                             </div>
