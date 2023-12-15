@@ -54,7 +54,7 @@ const doctors: Array<Doctor> = [
         description: "Knie",
         image: 'dr-dobbelaere.jpg',
         tags: [
-            { label: 'Kniepijn', value: 'knie' }
+            { label: 'Pijn aan de knie', value: 'knie' }
         ],
         slots: [
             { name: '15/01, 08u45', location: 'gent' },
@@ -74,6 +74,18 @@ const doctors: Array<Doctor> = [
         ]
     },
     {
+        name: "Dr. K. Plasschaert",
+        description: "Consultent Kinderorthopedie",
+        image: 'dr-plasschaert.jpg',
+        tags: [
+            { label: 'Pijn aan de heup', value: 'heup' },
+            { label: 'Pijn aan de knie', value: 'knie' }
+        ],
+        slots: [
+            { name: 'Morgen, 08u45', location: 'gent' },
+        ]
+    },
+    {
         name: "Dr. N. Ramrattan",
         description: "Wervelkolom",
         image: 'dr-ramrattan.jpg',
@@ -81,8 +93,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de rug', value: 'rug' },
         ],
         slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: '31/01, 15u15', location: 'gent' },
+            { name: '01/02, 16u30u', location: 'gent' },
         ]
     },
     {
@@ -90,11 +102,11 @@ const doctors: Array<Doctor> = [
         description: "Wervelkolom",
         image: 'dr-schepens.jpg',
         tags: [
-            { label: 'Kniepijn', value: 'knie' }
+            { label: 'Pijn aan de knie', value: 'knie' }
         ],
         slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: '03/01, 11u', location: 'lochristi' },
+            { name: '05/01, 17u45', location: 'gent' },
         ]
     },
     {
@@ -106,10 +118,7 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de pols', value: 'pols' },
             { label: 'Pijn aan de elleboog', value: 'elleboog' },
         ],
-        slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
-        ]
+        slots: []
     },
     {
         name: "Dr. H. Van Der Bracht",
@@ -119,8 +128,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de schouder', value: 'schouder' },
         ],
         slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: '12/01, 10u', location: 'lochristi' },
+            { name: '18/02, 12u15', location: 'gent' },
         ]
     },
     {
@@ -132,8 +141,7 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de heup', value: 'heup' },
         ],
         slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: 'Vandaag, 18u', location: 'gent' },
         ]
     },
     {
@@ -146,8 +154,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan een teen', value: 'teen' },
         ],
         slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: 'Morgen, 9u45', location: 'zelzate' },
+            { name: 'Overmorgen, 9u', location: 'zelzate' },
         ]
     },
     {
@@ -158,10 +166,7 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan een hand', value: 'hand' },
             { label: 'Pijn aan de pols', value: 'pols' },
         ],
-        slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
-        ]
+        slots: []
     },
     {
         name: "Dr. L. Verhelst",
@@ -171,8 +176,7 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de heup', value: 'heup' },
         ],
         slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: '12/01, 19u', location: 'leie' },
         ]
     },
     {
@@ -184,8 +188,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de elleboog', value: 'elleboog' },
         ],
         slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: '04/01, 16u30', location: 'lochristi' },
+            { name: '05/01, 12u', location: 'zelzate' },
         ]
     },
 ];
@@ -193,6 +197,7 @@ const doctors: Array<Doctor> = [
 const locations = [
     { label: 'Alle Locaties', value: '' },
     { label: 'Medisch Centrum Lochristi', value: 'lochristi' },
+    { label: 'Medisch Centrum Leie', value: 'leie' },
     { label: 'Medisch Centrum Zelzate', value: 'zelzate' },
     { label: 'AZ Sint-Lucas Gent - Straat 24', value: 'gent' },
 ]
