@@ -221,7 +221,7 @@ const App = (): JSX.Element => {
   return (
       <div className="h-full flex flex-col justify-between">
           <div>
-              <div className="px-16 pt-16 pb-8">
+              <div className="px-4 lg:px-16 pt-8 lg:pt-16 pb-8">
                   <h1 className="text-4xl font-bold tracking-tight">Ortho Gent</h1>
                   <h2 className="text-xl">Boek direct een afspraak, met de juiste arts.</h2>
                   <div className="my-6">
@@ -233,7 +233,7 @@ const App = (): JSX.Element => {
               </div>
               { filteredDoctors().length > 0
                   ? (
-                      <div className="px-16 py-8 bg-slate-100 ">
+                      <div className="px-4 lg:px-16 py-8 bg-slate-100 ">
                           <Filter doctors={ doctors } locations={ locations } locationQuery={ locationQuery } onSelectLocation={ onSelectLocation }/>
                           <SearchResults locationQuery={ locationQuery } searchResults={ filteredDoctors() }/>
                       </div>
@@ -241,7 +241,7 @@ const App = (): JSX.Element => {
                   : null
               }
           </div>
-          <div className="px-16 py-8">
+          <div className="px-4 lg:px-16 py-8">
               <p className="text-slate-400">Prototype voor Ortho Gent, opgemaakt door Wajo</p>
           </div>
       </div>

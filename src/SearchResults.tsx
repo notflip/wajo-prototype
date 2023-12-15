@@ -1,5 +1,6 @@
 import { Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button.tsx";
+import Dialog from "@/Dialog.tsx";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
     Card,
@@ -18,7 +19,7 @@ const SearchResults = ({ searchResults, locationQuery }: { searchResults: Array<
     }
 
     return (
-        <div className="my-8 grid grid-cols-3 gap-2">
+        <div className="my-8 grid grid-cols-1 lg:grid-cols-3 gap-2">
             { searchResults.map((doctor: any) => (
                 <Card key={ doctor.name } className={ locationFilteredSlots(doctor.slots).length === 0 ? `opacity-40` : `` }>
                     <CardHeader>
@@ -46,12 +47,21 @@ const SearchResults = ({ searchResults, locationQuery }: { searchResults: Array<
                             <Clock size={ 16 } className="text-slate-400"/>
                             Woensdag 12 december 09:30
                         </div>
-                        <div className="mt-4 flex gap-1">
-                            { doctor.slots.length > 0 && locationFilteredSlots(doctor.slots).map((slot: any) => (
-                                <Button size="xs" key={ slot.name }>{ slot.name }</Button>
+                        <div className="mt-4 flex flex-wrap gap-1">
+                            { doctor.slots.length > 0 &&
+                                locationFilteredSlots(doctor.slots).map((slot: any) => (
+                                    <Dialog
+                                        key={ slot.name }
+                                        slot={{name: `Bevestig boeking: ${slot.name}`}}
+                                        button={ <Button size="xs" key={ slot.name }>{ slot.name }</Button> }
+                                    />
                             )).splice(0, 2) }
                             { locationFilteredSlots(doctor.slots).length >= 2 &&
-                                <Button size="xs" variant="outline">Bekijk alle</Button>
+                                <Dialog
+                                    slot={{name: "Bekijk Alle"}}
+                                    button={ <Button size="xs" variant="outline">Bekijk alle</Button> }
+                                />
+
                             }
                         </div>
                     </CardContent>
