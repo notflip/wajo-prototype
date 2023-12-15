@@ -20,7 +20,7 @@ const SearchResults = ({ searchResults, locationQuery }: { searchResults: Array<
     return (
         <div className="my-8 grid grid-cols-3 gap-2">
             { searchResults.map((doctor: any) => (
-                <Card key={ doctor.name }>
+                <Card key={ doctor.name } className={ locationFilteredSlots(doctor.slots).length === 0 ? `opacity-40` : `` }>
                     <CardHeader>
                         <CardTitle className="text-lg">
                             <div className="flex items-center gap-3">
@@ -49,8 +49,10 @@ const SearchResults = ({ searchResults, locationQuery }: { searchResults: Array<
                         <div className="mt-4 flex gap-1">
                             { doctor.slots.length > 0 && locationFilteredSlots(doctor.slots).map((slot: any) => (
                                 <Button size="xs" key={ slot.name }>{ slot.name }</Button>
-                            )) }
-                            <Button size="xs" variant="outline">Bekijk alle</Button>
+                            )).splice(0, 2) }
+                            { locationFilteredSlots(doctor.slots).length >= 2 &&
+                                <Button size="xs" variant="outline">Bekijk alle</Button>
+                            }
                         </div>
                     </CardContent>
                 </Card>

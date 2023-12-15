@@ -21,15 +21,17 @@ export interface Doctor {
 
 const doctors: Array<Doctor> = [
     {
-        name: "Dr. A. Dobbelaere",
-        description: "Knie",
-        image: 'dr-dobbelaere.jpg',
+        name: "Dr. P. Beekman",
+        description: "Heup & Knie",
+        image: 'dr-beekman.jpg',
         tags: [
-            { label: 'Kniepijn', value: 'knie' }
+            { label: 'Pijn aan de heup', value: 'heup' },
+            { label: 'Pijn aan de knie', value: 'knie' },
         ],
         slots: [
             { name: 'Morgen, 19u', location: 'lochristi' },
             { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: '21/01, 13u30', location: 'zelzate' },
         ]
     },
     {
@@ -42,21 +44,21 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de elleboog', value: 'elleboog' },
         ],
         slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: 'Morgen, 13u', location: 'gent' },
+            { name: 'Overmorgen, 16u30', location: 'zelzate' },
+            { name: '22/01, 09u30', location: 'zelzate' },
         ]
     },
     {
-        name: "Dr. P. Beekman",
-        description: "Heup & Knie",
-        image: 'dr-beekman.jpg',
+        name: "Dr. A. Dobbelaere",
+        description: "Knie",
+        image: 'dr-dobbelaere.jpg',
         tags: [
-            { label: 'Pijn aan de heup', value: 'heup' },
-            { label: 'Pijn aan de knie', value: 'knie' },
+            { label: 'Kniepijn', value: 'knie' }
         ],
         slots: [
-            { name: 'Morgen, 19u', location: 'lochristi' },
-            { name: 'Overmorgen, 12u', location: 'gent' },
+            { name: '15/01, 08u45', location: 'gent' },
+            { name: '16/01, 10u45', location: 'lochristi' },
         ]
     },
     {
@@ -188,7 +190,12 @@ const doctors: Array<Doctor> = [
     },
 ];
 
-const locations = ['alle', 'gent', 'lochristi']
+const locations = [
+    { label: 'Alle Locaties', value: '' },
+    { label: 'Medisch Centrum Lochristi', value: 'lochristi' },
+    { label: 'Medisch Centrum Zelzate', value: 'zelzate' },
+    { label: 'AZ Sint-Lucas Gent - Straat 24', value: 'gent' },
+]
 
 const App = (): JSX.Element => {
     const [searchQuery, setSearchQuery] = React.useState("")
@@ -203,29 +210,34 @@ const App = (): JSX.Element => {
     }
 
     function filteredDoctors() {
-        if (searchQuery === '') {
-            return doctors
-        }
         return doctors.filter(d => d.tags.map(t => t.value).includes(searchQuery))
     }
 
   return (
       <div className="h-full flex flex-col justify-between">
           <div>
-              <div className="p-8">
+              <div className="px-16 pt-16 pb-8">
                   <h1 className="text-4xl font-bold tracking-tight">Ortho Gent</h1>
                   <h2 className="text-xl">Boek direct een afspraak, met de juiste arts.</h2>
-                  <div className="my-4">
-                      <Search searchQuery={searchQuery} onSelectSearchItem={ onSelectSearchItem } options={ doctors.map(d => d.tags) }/>
+                  <div className="my-6">
+                      <Search searchQuery={ searchQuery } onSelectSearchItem={ onSelectSearchItem } options={ doctors.map(d => d.tags) }/>
                   </div>
+                  { filteredDoctors().length === 0 &&
+                      <p className="text-slate-400">Selecteer je klacht hierboven om de beschikbare specialisten<br/> en hun eerstvolgende afspraken weer te geven.
+                      </p> }
               </div>
-              <div className="p-8 bg-slate-100 ">
-                  <Filter doctors={ doctors } locations={ locations } locationQuery={ locationQuery } onSelectLocation={ onSelectLocation }/>
-                  <SearchResults locationQuery={locationQuery} searchResults={ filteredDoctors() }/>
-              </div>
+              { filteredDoctors().length > 0
+                  ? (
+                      <div className="px-16 py-8 bg-slate-100 ">
+                          <Filter doctors={ doctors } locations={ locations } locationQuery={ locationQuery } onSelectLocation={ onSelectLocation }/>
+                          <SearchResults locationQuery={ locationQuery } searchResults={ filteredDoctors() }/>
+                      </div>
+                  )
+                  : null
+              }
           </div>
-          <div className="p-8">
-              <p className="text-slate-400">Prototype door Wajo, voor Ortho Gent</p>
+          <div className="px-16 py-8">
+              <p className="text-slate-400">Prototype voor Ortho Gent, opgemaakt door Wajo</p>
           </div>
       </div>
   );
