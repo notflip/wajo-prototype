@@ -57,9 +57,18 @@ import { Doctor } from "@/App.tsx";
 //     )
 // }
 
-function SelectPopover({ options }: { options: Array<{ label: string, value: string }> }) {
+function SelectLocation({ options, locationQuery, onSelectLocation }: {
+    options: Array<string>,
+    locationQuery: string
+    onSelectLocation: any
+}) {
     const [open, setOpen] = React.useState(false)
-    const [value, setValue] = React.useState("")
+
+    const locationMap = {
+        'alle': 'Alle Locaties',
+        'lochristi': 'Lochristi',
+        'gent': 'Gent'
+    }
 
     return (
         <Popover open={ open } onOpenChange={ setOpen }>
@@ -71,8 +80,8 @@ function SelectPopover({ options }: { options: Array<{ label: string, value: str
                     className="w-[200px] justify-between"
                 >
                     <MapPin className="mr-2 h-4 w-4"/>
-                    { value
-                        ? options.find((option: { label: string, value: string }) => option.value === value)?.label
+                    { locationQuery
+                        ? options.find((option: string) => option === locationQuery)
                         : "Selecteer Locatie" }
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
                 </Button>
@@ -82,22 +91,19 @@ function SelectPopover({ options }: { options: Array<{ label: string, value: str
                     <CommandInput placeholder="Selecteer Locatie"/>
                     <CommandEmpty>No framework found.</CommandEmpty>
                     <CommandGroup>
-                        { options.map((option: { label: string, value: string }) => (
+                        { options.map((option: string) => (
                             <CommandItem
-                                key={ option.value }
-                                value={ option.value }
-                                onSelect={ (currentValue) => {
-                                    setValue(currentValue === value ? "" : currentValue)
-                                    setOpen(false)
-                                } }
+                                key={ option }
+                                value={ option }
+                                onSelect={ onSelectLocation }
                             >
                                 <Check
                                     className={ cn(
                                         "mr-2 h-4 w-4",
-                                        value === option.value ? "opacity-100" : "opacity-0"
+                                        locationQuery === option ? "opacity-100" : "opacity-0"
                                     ) }
                                 />
-                                { option.label }
+                                { locationMap[option as 'alle'|'gent'|'lochristi'] }
                             </CommandItem>
                         )) }
                     </CommandGroup>
@@ -107,13 +113,15 @@ function SelectPopover({ options }: { options: Array<{ label: string, value: str
     )
 }
 
-export default function Filter({ locations }: {
+export default function Filter({ locations, locationQuery, onSelectLocation }: {
     doctors: Array<Doctor>,
-    locations: Array<{ label: string, value: string }>
+    locations: Array<string>
+    locationQuery: string
+    onSelectLocation: any
 }) {
     return (
         <div className="flex gap-1">
-            <SelectPopover options={ locations }/>
+            <SelectLocation locationQuery={ locationQuery } onSelectLocation={ onSelectLocation } options={ locations }/>
             {/*<SelectDoctor options={ doctors }/>*/}
         </div>
     );

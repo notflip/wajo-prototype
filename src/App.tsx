@@ -15,6 +15,7 @@ export interface Doctor {
     tags: Array<Options>,
     slots: Array<{
         name: string
+        location: string
     }>
 }
 
@@ -27,8 +28,8 @@ const doctors: Array<Doctor> = [
             { label: 'Kniepijn', value: 'knie' }
         ],
         slots: [
-            { name: 'Morgen, 19u' },
-            { name: 'Overmorgen, 12u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -41,8 +42,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de elleboog', value: 'elleboog' },
         ],
         slots: [
-            { name: 'Morgen, 19u' },
-            { name: 'Overmorgen, 12u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -54,8 +55,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de knie', value: 'knie' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -66,8 +67,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de heup', value: 'heup' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -78,8 +79,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de rug', value: 'rug' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -90,8 +91,8 @@ const doctors: Array<Doctor> = [
             { label: 'Kniepijn', value: 'knie' }
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -104,8 +105,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de elleboog', value: 'elleboog' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -116,8 +117,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de schouder', value: 'schouder' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -129,8 +130,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de heup', value: 'heup' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -143,8 +144,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan een teen', value: 'teen' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -156,8 +157,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de pols', value: 'pols' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -168,8 +169,8 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de heup', value: 'heup' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
     {
@@ -181,23 +182,31 @@ const doctors: Array<Doctor> = [
             { label: 'Pijn aan de elleboog', value: 'elleboog' },
         ],
         slots: [
-            { name: 'Vrijdag 12/01, 12u30' },
-            { name: 'Zaterdag 13/01, 14u' },
+            { name: 'Morgen, 19u', location: 'lochristi' },
+            { name: 'Overmorgen, 12u', location: 'gent' },
         ]
     },
 ];
 
-const locations = [
-    {
-        label: 'Lochristi', value: 'lochristi'
-    }
-]
+const locations = ['alle', 'gent', 'lochristi']
 
 const App = (): JSX.Element => {
     const [searchQuery, setSearchQuery] = React.useState("")
+    const [locationQuery, setLocationQuery] = React.useState("")
 
     function onSelectSearchItem(query: string) {
         setSearchQuery(searchQuery === query ? "" : query)
+    }
+
+    function onSelectLocation(location: string) {
+        setLocationQuery(locationQuery === location ? "" : location)
+    }
+
+    function filteredDoctors() {
+        if (searchQuery === '') {
+            return doctors
+        }
+        return doctors.filter(d => d.tags.map(t => t.value).includes(searchQuery))
     }
 
   return (
@@ -211,8 +220,8 @@ const App = (): JSX.Element => {
                   </div>
               </div>
               <div className="p-8 bg-slate-100 ">
-                  <Filter doctors={ doctors } locations={ locations }/>
-                  <SearchResults searchResults={ doctors } />
+                  <Filter doctors={ doctors } locations={ locations } locationQuery={ locationQuery } onSelectLocation={ onSelectLocation }/>
+                  <SearchResults locationQuery={locationQuery} searchResults={ filteredDoctors() }/>
               </div>
           </div>
           <div className="p-8">

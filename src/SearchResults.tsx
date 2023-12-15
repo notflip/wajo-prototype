@@ -8,7 +8,15 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 
-const SearchResults = ({ searchResults }: { searchResults: Array<any> }) => {
+const SearchResults = ({ searchResults, locationQuery }: { searchResults: Array<any>, locationQuery: string }) => {
+
+    const locationFilteredSlots = (slots: Array<any>): Array<any> => {
+        if (locationQuery === '' || locationQuery === 'alle') {
+            return slots
+        }
+        return slots.filter(s => s.location === locationQuery)
+    }
+
     return (
         <div className="my-8 grid grid-cols-3 gap-2">
             { searchResults.map((doctor: any) => (
@@ -39,7 +47,7 @@ const SearchResults = ({ searchResults }: { searchResults: Array<any> }) => {
                             Woensdag 12 december 09:30
                         </div>
                         <div className="mt-4 flex gap-1">
-                            { doctor.slots.length > 0 && doctor.slots.map((slot: any) => (
+                            { doctor.slots.length > 0 && locationFilteredSlots(doctor.slots).map((slot: any) => (
                                 <Button size="xs" key={ slot.name }>{ slot.name }</Button>
                             )) }
                             <Button size="xs" variant="outline">Bekijk alle</Button>

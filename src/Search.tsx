@@ -17,8 +17,8 @@ import {
 import { Options } from "@/App.tsx";
 
 export default function Search({ searchQuery, options, onSelectSearchItem }: {
-    searchQuery: string,
     options: Array<Array<Options>>,
+    searchQuery: string,
     onSelectSearchItem: any
 }) {
     const [open, setOpen] = React.useState(false)
@@ -46,17 +46,17 @@ export default function Search({ searchQuery, options, onSelectSearchItem }: {
         <Popover open={ open } onOpenChange={ setOpen }>
             <PopoverTrigger asChild>
                 <Button
-                    variant="outline"
+                    size="lg"
                     role="combobox"
                     aria-expanded={ open }
-                    className="w-[200px] justify-between"
+                    className="justify-between"
                 >
                     { searchQuery
                         ? uniqueValuesWithLabels.find((option: {
                             label: string,
                             value: string
                         }) => option.value === searchQuery)?.label
-                        : "Selecteer je klacht..." }
+                        : "Selecteer je klacht" }
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50"/>
                 </Button>
             </PopoverTrigger>
